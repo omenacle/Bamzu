@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "963756253592",
+    "firebase_url": "https://bamzu-app.firebaseio.com",
+    "project_id": "bamzu-app",
+    "storage_bucket": "bamzu-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963756253592:android:941a1712c095129f",
+        "android_client_info": {
+          "package_name": "com.omenacle.bamzu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963756253592-pvpn5qnes5qbpe7llafomh16tpv1m8va.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omenacle.bamzu",
+            "certificate_hash": "526943737A2DDA0A76D60807089468D9F2B78377"
+          }
+        },
+        {
+          "client_id": "963756253592-uhblagt7clokr9jo6bpktjikb6a57l85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS_2ICRX3O8vvfIPhj639QusHFLkXrEXQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963756253592-uhblagt7clokr9jo6bpktjikb6a57l85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

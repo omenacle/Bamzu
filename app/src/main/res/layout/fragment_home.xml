@@ -1,0 +1,82 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.omenacle.bamzu.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top">
+
+        <ImageView
+            android:id="@+id/top_ads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="120dp" />
+
+        <TextView
+            android:id="@+id/textView_desc_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top_ads"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:text="@string/desc_main"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btn_browse"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/btn_grp_margin"
+            android:layout_marginRight="@dimen/btn_grp_margin"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="-20dp"
+            android:text="@string/btn_browse"
+            android:textAllCaps="true"
+
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/colorSytledButtonText"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_my_services"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/btn_grp_margin"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:drawableStart="@drawable/ic_action_business"
+            android:drawableLeft="@drawable/ic_action_business"
+            android:drawablePadding="-40dp"
+
+            android:text="@string/btn_my_services"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/colorSytledButtonText"
+            android:textStyle="bold" />
+
+
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/topCategories_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:scrollbars="none">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</FrameLayout>

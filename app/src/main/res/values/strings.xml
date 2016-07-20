@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Bamzu</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--Slide Strings -->
+    <string name="slide_1_title">Bamzu </string>
+    <string name="slide_2_title">Adopt, Buy and Sell.</string>
+    <string name="slide_3_title">Lost and Found.</string>
+    <string name="slide_4_title">Buy and Sell Pet Accessories. </string>
+
+    <string name="slide_1_desc">Browse pet ads around your local area</string>
+    <string name="slide_2_desc">You can now search local pet ads or post yours, easily! </string>
+    <string name="slide_3_desc">Browse through lost and found pets in your area</string>
+    <string name="slide_4_desc">Buy and sell pet accessories</string>
+    <!-- EndOf Slide Strings -->
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="start">Get Started</string>
+
+    <string name="title_activity_main">Bamzu</string>
+
+
+    <string name="btn_sign_in">Sign In</string>
+
+
+    <string name="nav_home">Home</string>
+    <string name="nav_post_ad">My Services</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_messages">Messages</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_manage_ads">Manage Services</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_search_fragment">Search</string>
+    <string name="title_my_services">My Services</string>
+    <string name="title_messages_fragment">Messages</string>
+    <string name="title_favorites_fragment">Favorites</string>
+    <string name="title_settings_fragment">Settings</string>
+    <string name="title_help_fragment">Help</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="action_messages">Messages</string>
+    <string name="current_location">Current Location</string>
+    <string name="btn_browse">BROWSE</string>
+    <string name="btn_my_services">POST</string>
+    <string name="desc_main">Post and browse through services around your area.</string>
+
+
+    <!-- Top Categories -->
+    <string name="topCategory_house_services">House Services</string>
+    <string name="topCategory_electronics">Electronics</string>
+    <string name="topCategory_photography">Photography</string>
+    <string name="topCategory_fitness_health">Fitness / Health</string>
+    <string name="topCategory_tuition">Tuition</string>
+    <string name="topCategory_events">Events</string>
+    <string name="topCategory_professional">Professional</string>
+    <string name="topCategory_others">Others</string>
+    <string name="search_hint">Search Services</string>
+    <!-- EndOf TOp Categories -->
+    <integer name="category_per_row">2</integer>
+</resources>

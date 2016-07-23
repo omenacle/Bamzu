@@ -68,6 +68,8 @@
     <string name="topCategory_professional">Professional</string>
     <string name="topCategory_others">Others</string>
     <string name="search_hint">Search Services</string>
+    <string name="email_address">E-mail</string>
+    <string name="password">Password</string>
     <!-- EndOf TOp Categories -->
     <integer name="category_per_row">2</integer>
 </resources>

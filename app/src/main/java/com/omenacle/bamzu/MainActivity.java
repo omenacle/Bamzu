@@ -4,8 +4,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
-import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     private static final String VISIBLE_FRAGMENT = "visible_fragment";
     private static final String TAG = ".MainActivity";
     private NavigationView mNavigationView;
+    Button mBtnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +53,24 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
+        //set navigation bar
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
+       mBtnSignIn = (Button)mNavigationView.getHeaderView(0).findViewById(R.id.btn_sign_in);
+        mBtnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //if search was sent from @Link SearchView
         displayView(R.id.nav_home);
+
+
+
     }
 
     @Override
@@ -79,6 +95,10 @@ public class MainActivity extends AppCompatActivity
             mCurrentFragmentId = R.id.nav_favorites;
 
         }
+        if (currentFragment instanceof SearchFragment) {
+            mActionBarTitle = getString(R.string.title_search_fragment);
+            mCurrentFragmentId = R.id.nav_search;
+        }
         if (currentFragment instanceof SettingsFragment) {
             mActionBarTitle = getString(R.string.title_settings_fragment);
             mCurrentFragmentId = R.id.nav_settings;
@@ -98,7 +118,7 @@ public class MainActivity extends AppCompatActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchManager mSearchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        SearchManager mSearchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         MenuItemCompat.collapseActionView(searchItem);
         mSearchView.setIconifiedByDefault(false);
@@ -109,7 +129,6 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -130,7 +149,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_search:
                 //@TODO add search capability
-                mNewFragment = new HomeFragment();
+                mNewFragment = new SearchFragment();
                 mActionBarTitle = getString(R.string.title_search_fragment);
                 break;
             case R.id.nav_post_ad:
@@ -171,7 +190,9 @@ public class MainActivity extends AppCompatActivity
         //setToolbar title
         setActionBarTitle(mActionBarTitle);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         drawer.closeDrawer(GravityCompat.START);
+
     }
 
     private void setActionBarTitle(String mActionBarTitle) {
@@ -179,6 +200,24 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setTitle(mActionBarTitle);
         }
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleSearchIntent(intent);
+    }
+
+
+    private void handleSearchIntent(Intent intent) {
+
+        String query = intent.getStringExtra(SearchManager.QUERY);
+        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+        //use the query to search your data somehow
+        displayView(R.id.nav_search);
+
+    }
+
+
+
 
 
 }

@@ -13,5 +13,10 @@
     <dimen name="slide_desc">16dp</dimen>
     <dimen name="desc_padding">40dp</dimen>
     <dimen name="btn_grp_margin">20dp</dimen>
+<!-- Font -->
+    <dimen name="font_size_small">10sp</dimen>
+    <dimen name="font_size_medium">20sp</dimen>
+    <dimen name="font_size_large">50sp</dimen>
+<!-- EndOf Font -->
 
 </resources>

@@ -1,4 +1,6 @@
-package com.omenacle.bamzu;
+package com.omenacle.bamzu.models;
+
+import com.omenacle.bamzu.R;
 
 /**
  * Created by omegareloaded on 7/19/16.

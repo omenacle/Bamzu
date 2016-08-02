@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.omenacle.bamzu.HomeFragment">
+    tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -44,7 +44,7 @@
             android:textAllCaps="true"
 
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@color/colorSytledButtonText"
+            android:textColor="@color/colorwhite"
             android:textStyle="bold" />
 
         <Button
@@ -64,7 +64,7 @@
             android:textAllCaps="true"
             android:gravity="center"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@color/colorSytledButtonText"
+            android:textColor="@color/colorwhite"
             android:textStyle="bold" />
 
 

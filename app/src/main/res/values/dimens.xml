@@ -19,4 +19,5 @@
     <dimen name="font_size_large">50sp</dimen>
 <!-- EndOf Font -->
 
+    <dimen name="activity_vertical_margin_lg">30dp</dimen>
 </resources>

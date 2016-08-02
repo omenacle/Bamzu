@@ -7,22 +7,33 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
-import android.view.MenuInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.omenacle.bamzu.fragment.FavoritesFragment;
+import com.omenacle.bamzu.fragment.HelpFragment;
+import com.omenacle.bamzu.fragment.HomeFragment;
+import com.omenacle.bamzu.fragment.SearchFragment;
+import com.omenacle.bamzu.fragment.SettingsFragment;
+import com.omenacle.bamzu.models.User;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,7 +41,23 @@ public class MainActivity extends AppCompatActivity
     private static final String VISIBLE_FRAGMENT = "visible_fragment";
     private static final String TAG = ".MainActivity";
     private NavigationView mNavigationView;
+    private Menu mNavigationMenu;
+
+    //Buttons
     Button mBtnSignIn;
+
+    // [START declare_auth]
+    private FirebaseAuth mAuth;
+    // [END declare_auth]
+
+    //[START declare_init_auth]
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    //[END declare_init_auth]
+
+    //[START declare_current_usr]
+    private User mCurrentUser;
+    //[END declare_current_user]
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,20 +84,91 @@ public class MainActivity extends AppCompatActivity
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-       mBtnSignIn = (Button)mNavigationView.getHeaderView(0).findViewById(R.id.btn_sign_in);
-        mBtnSignIn.setOnClickListener(new View.OnClickListener() {
+        //getting menu
+        mNavigationMenu = mNavigationView.getMenu();
+
+
+        //[start initialize_auth]
+        mAuth = FirebaseAuth.getInstance();
+        //[end initialize_auth]
+
+        // [START auth_state_listener]
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-                startActivity(intent);
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null) {
+                    //user is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in " + user.getUid());
+                    mCurrentUser = new User(user);
+                    updateNavBar(mCurrentUser);
+                } else {
+                    //user is logged out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    updateNavBar(null);
+                }
+
             }
-        });
+        };
+        //[END auth_state_listener]
+
 
         //if search was sent from @Link SearchView
         displayView(R.id.nav_home);
 
 
+    }
 
+    // [START on_start_add_listener]
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+    // [END on_start_add_listener]
+
+    // [START on_stop_remove_listener]
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    // [END on_stop_remove_listener]
+
+    private void updateNavBar(User mCurrentUser) {
+        //Buttons
+        mBtnSignIn = (Button) mNavigationView.getHeaderView(0).findViewById(R.id.btn_sign_in);
+
+        mNavigationMenu = mNavigationView.getMenu();
+        MenuItem mNavSignOut = mNavigationMenu.findItem(R.id.nav_sign_out);
+
+        if (mCurrentUser == null) {
+            Log.d(TAG, "Not Signed In: Update Navbar");
+            //Configure sign in button visiblity
+            mBtnSignIn.setVisibility(View.VISIBLE);
+            mNavSignOut.setVisible(false);
+            //User is not logged In
+            mBtnSignIn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {//user is signed in
+            Log.d(TAG, "UpdateNavbar() + Logged In " + mCurrentUser.toString());
+            mBtnSignIn.setVisibility(View.GONE);
+            mNavSignOut.setVisible(true);
+        }
+    }
+
+    private void signOut() {
+        mAuth.signOut();
+        Toast.makeText(MainActivity.this, getString(R.string.succesful_sign_out),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -174,6 +272,10 @@ public class MainActivity extends AppCompatActivity
                 mNewFragment = new HelpFragment();
                 mActionBarTitle = getString(R.string.title_help_fragment);
                 break;
+            case R.id.nav_sign_out:
+                mNewFragment = new HomeFragment();
+                mActionBarTitle = getString(R.string.title_help_fragment);
+                signOut();
             default:
                 mNewFragment = new HomeFragment();
                 mActionBarTitle = getString(R.string.app_name);
@@ -215,9 +317,6 @@ public class MainActivity extends AppCompatActivity
         displayView(R.id.nav_search);
 
     }
-
-
-
 
 
 }

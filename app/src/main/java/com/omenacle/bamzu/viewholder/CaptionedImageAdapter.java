@@ -1,4 +1,4 @@
-package com.omenacle.bamzu;
+package com.omenacle.bamzu.viewholder;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.omenacle.bamzu.R;
 
 /**
  * Created by omegareloaded on 7/19/16.

@@ -1,12 +1,14 @@
-package com.omenacle.bamzu;
+package com.omenacle.bamzu.fragment;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.omenacle.bamzu.R;
 
 
 /**

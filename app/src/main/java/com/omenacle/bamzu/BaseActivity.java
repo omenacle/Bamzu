@@ -1,20 +1,33 @@
 package com.omenacle.bamzu;
 
-
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 
 public class BaseActivity extends AppCompatActivity {
 
+    private ProgressDialog mProgressDialog;
 
-    private static final String TAG = ".BaseActivity";
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.sign_in_loading));
+            mProgressDialog.setIndeterminate(true);
+            
+        }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+        mProgressDialog.show();
     }
 
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
+    }
 
 }

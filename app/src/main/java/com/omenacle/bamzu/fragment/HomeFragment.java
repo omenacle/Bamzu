@@ -1,4 +1,4 @@
-package com.omenacle.bamzu;
+package com.omenacle.bamzu.fragment;
 
 
 import android.app.Fragment;
@@ -11,6 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.omenacle.bamzu.R;
+import com.omenacle.bamzu.models.TopCategory;
+import com.omenacle.bamzu.viewholder.CaptionedImageAdapter;
 
 public class HomeFragment extends Fragment {
 

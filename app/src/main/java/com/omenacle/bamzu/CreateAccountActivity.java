@@ -46,10 +46,10 @@ import com.omenacle.bamzu.models.User;
 /**
  * Created by omegareloaded on 7/24/16.
  */
-public class SignInActivity extends BaseActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class CreateAccountActivity extends BaseActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int RC_SIGN_IN = 9001;
-    private final String TAG = ".SignInActivity";
+    private final String TAG = ".CreatAccountActivity";
 
     // [START declare_database]
     private DatabaseReference mDatabase;
@@ -207,7 +207,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     private void showSignInError() {
         Log.d(TAG, "Sign In failed");
-        Toast.makeText(SignInActivity.this, getString(R.string.sign_in_failed), Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateAccountActivity.this, getString(R.string.sign_in_failed), Toast.LENGTH_SHORT).show();
     }
 
     //[START on_start_add_listener]
@@ -334,7 +334,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                           showSignInError();
+                            showSignInError();
                         }
 
                         // [START_EXCLUDE]
@@ -358,8 +358,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void returnToMainActivity() {
-        Toast.makeText(SignInActivity.this, getString(R.string.succesful_sign_in), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+        Toast.makeText(CreateAccountActivity.this, getString(R.string.succesful_sign_in), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -373,9 +373,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn_google_sign_in:
                 signInWithGoogle();
                 break;
-            case R.id.btn_create_account:
-                Toast.makeText(SignInActivity.this, "create clicked", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SignInActivity.this, CreateAccountActivity.class));
+            case R.id.tv_forgot_password:
+
                 break;
         }
     }

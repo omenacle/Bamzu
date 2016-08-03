@@ -102,12 +102,11 @@ public class MainActivity extends AppCompatActivity
                 if (user != null) {
                     //user is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in " + user.getUid());
-                    mCurrentUser = new User(user);
-                    updateNavBar(mCurrentUser);
+                    updateNavBar();
                 } else {
                     //user is logged out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    updateNavBar(null);
+                    updateNavBar();
                 }
 
             }
@@ -139,14 +138,14 @@ public class MainActivity extends AppCompatActivity
     }
     // [END on_stop_remove_listener]
 
-    private void updateNavBar(User mCurrentUser) {
+    private void updateNavBar() {
         //Buttons
         mBtnSignIn = (Button) mNavigationView.getHeaderView(0).findViewById(R.id.btn_sign_in);
 
         mNavigationMenu = mNavigationView.getMenu();
         MenuItem mNavSignOut = mNavigationMenu.findItem(R.id.nav_sign_out);
 
-        if (mCurrentUser == null) {
+        if (mAuth.getCurrentUser() == null) {
             Log.d(TAG, "Not Signed In: Update Navbar");
             //Configure sign in button visiblity
             mBtnSignIn.setVisibility(View.VISIBLE);
@@ -160,7 +159,6 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         } else {//user is signed in
-            Log.d(TAG, "UpdateNavbar() + Logged In " + mCurrentUser.toString());
             mBtnSignIn.setVisibility(View.GONE);
             mNavSignOut.setVisible(true);
         }
@@ -168,7 +166,7 @@ public class MainActivity extends AppCompatActivity
 
     private void signOut() {
         mAuth.signOut();
-        Toast.makeText(MainActivity.this, getString(R.string.succesful_sign_out),Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, getString(R.string.succesful_sign_out), Toast.LENGTH_SHORT).show();
     }
 
     @Override
